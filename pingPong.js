@@ -1,13 +1,13 @@
 var xBall = Math.floor(Math.random() * 300) + 50;
 var yBall = 50;
-var xSpeed = 3;
-var ySpeed = 3;
+var xSpeed = 5;
+var ySpeed = 5;
 var score = 0;
 let p = 0;
 
 // Canvas
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 400);
 }
 
 //Background
@@ -45,7 +45,7 @@ function move() {
 function bounce() {
 
   if (xBall <= 10 ||
-    xBall >= 400 - 10) {
+    xBall >= 600 - 10) {
     xSpeed *= -1;
   }
   if (yBall <= 10 ||
