@@ -1,9 +1,9 @@
 var xBall = Math.floor(Math.random() * 300) + 50;
 var yBall = 50;
-var xSpeed = (2, 7);
-var ySpeed = (-7, -2);
-var score = 0
-let p = 0
+var xSpeed = 3;
+var ySpeed = 3;
+var score = 0;
+let p = 0;
 
 // Canvas
 function setup() {
@@ -15,7 +15,7 @@ function setup() {
 function draw() {
 
   // Background
-  background(0);
+  background(51);
 
   // Paddle
   fill('#ffffff');
@@ -26,9 +26,9 @@ function draw() {
   //Functions
   move();
   display();
-  bounce();
-  //resetBall();
   paddle();
+  bounce();
+  
 
   //Score
   fill('#d9c3f7');
@@ -44,12 +44,12 @@ function move() {
 
 function bounce() {
 
-  if (xBall < 10 ||
-    xBall > 400 - 10) {
+  if (xBall <= 10 ||
+    xBall >= 400 - 10) {
     xSpeed *= -1;
   }
-  if (yBall < 10 ||
-    yBall > 400 - 10) {
+  if (yBall <= 10 ||
+    yBall >= 400 - 10) {
     ySpeed *= -1;
   }
 }
@@ -61,11 +61,9 @@ function display() {
 
 // Bounce off Paddle
 function paddle() {
-  if ((xBall-10 == 0 &&
-      yBall > p ) &&
+  if ((xBall-10 <= 0 &&
+      yBall >= p ) &&
     (yBall <= p+60)) {
-    xSpeed *= -1;
-    // ySpeed *= -1;
     score++;
 
   }
