@@ -5,9 +5,17 @@ var ySpeed = 5;
 var score = 0;
 let p = 0;
 
+let height = 1000;
+let breadth = 1500;
+
+let paddleHeight = height/5;
+let paddleBreadth = 20;
+
+let radius = paddleHeight/10;
+
 // Canvas
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(breadth, height);
 }
 
 //Background
@@ -20,15 +28,13 @@ function draw() {
   // Paddle
   fill('#ffffff');
   p = mouseY;
-  rect(0, p, 10, 60);
+  rect(0, p, paddleBreadth, paddleHeight);
   // constrain(p,0,0);
 
   //Functions
   move();
   display();
-  paddle();
   bounce();
-  
 
   //Score
   fill('#d9c3f7');
@@ -43,28 +49,24 @@ function move() {
 
 
 function bounce() {
-
-  if (xBall <= 10 ||
-    xBall >= 600 - 10) {
-    xSpeed *= -1;
-  }
-  if (yBall <= 10 ||
-    yBall >= 400 - 10) {
+  if (yBall-radius <= 0 ||
+    yBall+radius >= height) {
     ySpeed *= -1;
   }
+
+  if ((xBall-radius <= paddleBreadth &&
+      yBall >= p ) &&
+    (yBall <= p+paddleHeight)) {
+    score++;
+    xSpeed *= -1;
+  } else if (xBall-radius <= 0 ||
+    xBall+radius >= breadth) {
+    xSpeed *= -1;
+  }
+  
 }
 
 function display() {
   fill('#d9c3f7');
-  ellipse(xBall, yBall, 20, 20);
-}
-
-// Bounce off Paddle
-function paddle() {
-  if ((xBall-10 <= 0 &&
-      yBall >= p ) &&
-    (yBall <= p+60)) {
-    score++;
-
-  }
+  ellipse(xBall, yBall, 2*radius, 2*radius);
 }
