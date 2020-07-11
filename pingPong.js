@@ -15,6 +15,7 @@ let radius = paddleHeight/10;
 
 // Canvas
 function setup() {
+  console.log("Hi");
   createCanvas(breadth, height);
 }
 
